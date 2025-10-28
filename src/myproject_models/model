@@ -1,1 +1,14 @@
+import torch
+from torchvision.models.detection import keypointrcnn_resnet50_fpn
+from torchvision.transforms import functional as F
+from PIL import Image
 
+# Загрузка модели
+model = keypointrcnn_resnet50_fpn(pretrained=True)
+
+# Перевод в режим инференса
+model.eval()
+
+# GPU
+device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+model.to(device)
